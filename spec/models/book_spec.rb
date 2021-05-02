@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helpe
+require 'rails_helper'
 
 RSpec.describe Book, "モデルに関するテスト", type: :model do
   describe '実際に保存してみる' do
