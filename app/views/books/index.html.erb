@@ -1,0 +1,38 @@
+<% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+<h1>Books</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>Body</td>
+      </tr>
+    </thead>
+    <% @books.each do |book| %>
+    <tbody>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to "Show", book_path(book) %></td>
+        <td><%= link_to "Edit", edit_book_path(book) %></td>
+        <td><%= link_to "Destroy", book_path(book), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  
+  <h2>New book</h2>
+  <%= form_with model:@book, local:true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    <h4>Title</h4>
+    <%= f.text_field :title %>
+  
+    <h4>Body</h4>
+    <%= f.text_area :body %>
+    
+    <%= f.submit 'Create Book' %>
+
+  <% end %>
